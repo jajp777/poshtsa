@@ -1,45 +1,30 @@
-﻿<#
+<#
 Written by Paul Milbank
 07/04/2016
 
 Script to randomly direct pasengers down one lane or another.
 #>
 
-function Print-Leftarrow ()
-{
-    $leftarrow = @("
+$LeftArrow = @("
        /|----
       /      |
       \      |
        \|----
-       ")
-Write-output $leftarrow
-}
+")
 
-
-function Print-Rightarrow ()
-{
-    $rightarrow = @("
+$RightArrow = @("
       ----|\
      |      \
      |      /
       ----|/
-       ")
-Write-output $rightarrow
-}
+")
+
+$Arrows = $LeftArrow, $RightArrow
 
 do
 {
-    $random = Get-Random -Minimum 0 -Maximum 2
-    if ($random -eq "0")
-        {
-            Print-Leftarrow
-        }
-    else
-        {
-            Print-Rightarrow
-        }
-$anykey = Read-Host "Press`"enter`" to continue or `"q`" to quit"
-}
-until ($anykey -eq "q")
+    Write-Output (Get-Random -InputObject $Arrows)
 
+    $AnyKey = Read-Host "Press`"enter`" to continue or `"q`" to quit"
+}
+until ($AnyKey -eq "q")
